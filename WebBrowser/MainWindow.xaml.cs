@@ -40,19 +40,43 @@ namespace WebBrowser
 
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
-            string url = UrlTextBox.Text;
+            NavigateToUrlOrSearch();
+        }
 
-            if (url == "")
+        private void UrlTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
             {
-                url = "https://yandex.com";
+                NavigateToUrlOrSearch();
             }
+        }
 
-            if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            Browser.Reload();
+        }
+        private void NavigateToUrlOrSearch()
+        {
+            string input = UrlTextBox.Text.Trim();
+
+            if (IsValidUrl(input))
             {
-                url = "http://" + url;
+               
+                Browser.Source = new Uri(input);
             }
+            else
+            {
+                
+                string searchQuery = "https://www.google.com/search?q=" + Uri.EscapeDataString(input);
+                Browser.Source = new Uri(searchQuery);
+            }
+        }
 
-            Browser.Source = new Uri(url);
+        
+        private bool IsValidUrl(string url)
+        {
+            return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult)
+                && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
     }
 }

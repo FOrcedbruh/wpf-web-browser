@@ -1,6 +1,17 @@
-2024/10/13-13:10:08.380 221c Reusing MANIFEST C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2024/10/13-13:10:08.387 221c Recovering log #15
-2024/10/13-13:10:08.389 221c Reusing old log C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000015.log 
-2024/10/13-13:11:08.592 1108 Level-0 table #20: started
-2024/10/13-13:11:08.602 1108 Level-0 table #20: 51709 bytes OK
-2024/10/13-13:11:08.604 1108 Delete type=0 #15
+2024/10/13-15:31:09.396 420c Reusing MANIFEST C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2024/10/13-15:31:09.402 420c Recovering log #24
+2024/10/13-15:31:09.404 420c Reusing old log C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000024.log 
+2024/10/13-15:31:43.330 1b34 Level-0 table #28: started
+2024/10/13-15:31:43.340 1b34 Level-0 table #28: 47751 bytes OK
+2024/10/13-15:31:43.341 1b34 Delete type=0 #24
+2024/10/13-15:31:43.342 1b34 Compacting 4@0 + 1@1 files
+2024/10/13-15:31:43.346 1b34 Generated table #29@0: 471 keys, 302202 bytes
+2024/10/13-15:31:43.346 1b34 Compacted 4@0 + 1@1 files => 302202 bytes
+2024/10/13-15:31:43.346 1b34 compacted to: files[ 0 1 1 0 0 0 0 ]
+2024/10/13-15:31:43.347 1b34 Delete type=2 #17
+2024/10/13-15:31:43.347 1b34 Delete type=2 #20
+2024/10/13-15:31:43.347 1b34 Delete type=2 #22
+2024/10/13-15:31:43.347 1b34 Delete type=2 #25
+2024/10/13-15:31:43.347 1b34 Delete type=2 #28
+2024/10/13-15:32:00.252 f08 Level-0 table #31: started
+2024/10/13-15:32:00.257 f08 Level-0 table #31: 65062 bytes OK

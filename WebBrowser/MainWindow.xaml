@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:WebBrowser"
         mc:Ignorable="d"
         Title="Web browser" Height="800" Width="1200" Background="Black">
-    <Grid Background="DarkGray">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -165,7 +165,49 @@
                     </Style>
                 </Button.Style>
             </Button>
+            <Button Name="RefreshButton" Content="Refresh" Width="100" Height="40" Margin="5, 0, 0, 0" FontSize="16" Click="RefreshButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#FFD700" Offset="0.0" />
+                                    <GradientStop Color="#FF4500" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="FontWeight" Value="Bold" />
+                        <Setter Property="Padding" Value="10,5" />
+                        <Setter Property="BorderBrush" Value="#FF8C00" />
+                        <Setter Property="BorderThickness" Value="2" />
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="5" />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="#9F70FD" Offset="0.0" />
+                                            <GradientStop Color="#7F27FF" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Black" BlurRadius="15" ShadowDepth="8" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
-        <wv2:WebView2 Name="Browser" Grid.Row="1" Source="https://yandex.com/"/>
+        <wv2:WebView2 Name="Browser" Grid.Row="1" Source="https://www.google.com/"/>
     </Grid>
 </Window>
