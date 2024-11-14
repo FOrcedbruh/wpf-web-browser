@@ -1,3 +1,5 @@
-2024/10/13-15:24:33.269 23c0 Reusing MANIFEST C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2024/10/13-15:24:33.275 23c0 Recovering log #24
-2024/10/13-15:24:33.277 23c0 Reusing old log C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000024.log 
+2024/11/14-21:23:53.486 12e8 Reusing MANIFEST C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2024/11/14-21:23:53.493 12e8 Recovering log #41
+2024/11/14-21:23:53.494 12e8 Level-0 table #43: started
+2024/11/14-21:23:53.509 12e8 Level-0 table #43: 130256 bytes OK
+2024/11/14-21:23:53.515 12e8 Delete type=0 #41

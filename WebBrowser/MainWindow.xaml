@@ -7,6 +7,24 @@
         xmlns:local="clr-namespace:WebBrowser"
         mc:Ignorable="d"
         Title="Web browser" Height="800" Width="1200" Background="Black">
+    <Window.Resources>
+      
+        <Style TargetType="TabItem">
+           
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="BorderBrush" Value="#7F27FF"/>
+
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True">
+                    <Setter Property="Background" Value="BlueViolet"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -207,7 +225,10 @@
                     </Style>
                 </Button.Style>
             </Button>
+            <Button Name="NewTabButton" Background="#fff" FontWeight="Bold" Content="New Tab" Width="80" Height="35" Margin="5" FontSize="14" Click="NewTabButton_Click"/>
         </StackPanel>
-        <wv2:WebView2 Name="Browser" Grid.Row="1" Source="https://www.google.com/"/>
+        <TabControl Name="TabControl" Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
+            
+        </TabControl>
     </Grid>
 </Window>
