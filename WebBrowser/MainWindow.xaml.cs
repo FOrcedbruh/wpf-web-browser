@@ -14,52 +14,83 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Web.WebView2.Wpf;
 
+
+
 namespace WebBrowser
 {
     public partial class MainWindow : Window
     {
+        // Список для хранения избранных URL
+        private List<string> favorites = new List<string>();
+
         public MainWindow()
         {
             InitializeComponent();
             CreateNewTab("https://www.google.com"); 
+            FavoritesPanel.Visibility = Visibility.Collapsed;
+            FavoritesColumn.Width = new GridLength(0);
+            ToggleFavoritesOverlayButton.Content = "Показать избранное";
         }
 
-       
+        // Метод для создания новой вкладки
         private void CreateNewTab(string url)
         {
-            
-            var tabItem = new TabItem();
-            var headerPanel = new StackPanel { Orientation = Orientation.Horizontal };
+            TabItem tabItem = new TabItem();
 
-
-            var headerText = new TextBlock { Text = "New Tab", Margin = new Thickness(0, 0, 5, 0) };
+           
+            StackPanel headerPanel = new StackPanel { Orientation = Orientation.Horizontal };
+            TextBlock headerText = new TextBlock { Text = url, Margin = new Thickness(0, 0, 5, 0), Width = 200, TextTrimming = TextTrimming.CharacterEllipsis };
             headerPanel.Children.Add(headerText);
 
-            
-            var closeButton = new Button { Content = "X", Width = 20, Height = 20, Padding = new Thickness(0) };
-            closeButton.Click += (s, e) => CloseTab(tabItem); // Закрытие вкладки при нажатии на "X"
+            Button closeButton = new Button { Content = "X", Width = 20, Height = 20, Padding = new Thickness(0) };
+            closeButton.Click += (s, e) => CloseTab(tabItem);
             headerPanel.Children.Add(closeButton);
 
             tabItem.Header = headerPanel;
 
-            
-            var browser = new WebView2
+           
+            WebView2 browser = new WebView2 { Source = new Uri(url) };
+            browser.NavigationCompleted += (s, e) =>
             {
-                Source = new Uri(url)
+                
+                if (e.IsSuccess && browser.Source != null)
+                {
+                    headerText.Text = browser.Source.ToString();
+                }
+                else
+                {
+                    headerText.Text = "Navigation Failed";
+                }
             };
 
-            
             tabItem.Content = browser;
 
-            
             TabControl.Items.Add(tabItem);
-            TabControl.SelectedItem = tabItem; 
+            TabControl.SelectedItem = tabItem;
         }
+        private void ToggleFavoritesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (FavoritesPanel.Visibility == Visibility.Visible)
+            {
+                
+                FavoritesPanel.Visibility = Visibility.Collapsed;
+                FavoritesColumn.Width = new GridLength(0); 
+                ToggleFavoritesOverlayButton.Content = "Показать избранное";
+            }
+            else
+            {
+                
+                FavoritesPanel.Visibility = Visibility.Visible;
+                FavoritesColumn.Width = new GridLength(200); 
+                ToggleFavoritesOverlayButton.Content = "Скрыть избранное";
+            }
+        }
+
 
         
         private void CloseTab(TabItem tabItem)
         {
-            if (TabControl.Items.Count > 1) 
+            if (TabControl.Items.Count > 1)
             {
                 TabControl.Items.Remove(tabItem);
             }
@@ -69,22 +100,25 @@ namespace WebBrowser
             }
         }
 
-        
+       
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            GetCurrentBrowser()?.GoBack();
+            WebView2 browser = GetCurrentBrowser();
+            if (browser != null) browser.GoBack();
         }
 
        
         private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
-            GetCurrentBrowser()?.GoForward();
+            WebView2 browser = GetCurrentBrowser();
+            if (browser != null) browser.GoForward();
         }
 
         
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            GetCurrentBrowser()?.Reload();
+            WebView2 browser = GetCurrentBrowser();
+            if (browser != null) browser.Reload();
         }
 
        
@@ -92,14 +126,11 @@ namespace WebBrowser
         {
             NavigateToUrlOrSearch();
         }
-
-        
         private void NewTabButton_Click(object sender, RoutedEventArgs e)
         {
             CreateNewTab("https://www.google.com");
         }
 
-        
         private void UrlTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -108,23 +139,24 @@ namespace WebBrowser
             }
         }
 
-        
         private void NavigateToUrlOrSearch()
         {
             string input = UrlTextBox.Text.Trim();
 
             if (IsValidUrl(input))
             {
-                GetCurrentBrowser().Source = new Uri(input);
+                WebView2 browser = GetCurrentBrowser();
+                if (browser != null) browser.Source = new Uri(input);
             }
             else
             {
                 string searchQuery = "https://www.google.com/search?q=" + Uri.EscapeDataString(input);
-                GetCurrentBrowser().Source = new Uri(searchQuery);
+                WebView2 browser = GetCurrentBrowser();
+                if (browser != null) browser.Source = new Uri(searchQuery);
             }
         }
 
-        
+       
         private WebView2 GetCurrentBrowser()
         {
             if (TabControl.SelectedItem is TabItem selectedTab && selectedTab.Content is WebView2 browser)
@@ -134,18 +166,40 @@ namespace WebBrowser
             return null;
         }
 
-        
         private bool IsValidUrl(string url)
         {
             return Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult)
                    && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
         }
 
-        
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var browser = GetCurrentBrowser();
+            WebView2 browser = GetCurrentBrowser();
             UrlTextBox.Text = browser?.Source?.ToString() ?? "https://www.google.com";
+        }
+
+        
+        private void AddToFavoritesButton_Click(object sender, RoutedEventArgs e)
+        {
+            WebView2 browser = GetCurrentBrowser();
+            if (browser != null)
+            {
+                string url = browser.Source?.ToString();
+                if (!string.IsNullOrEmpty(url) && !favorites.Contains(url))
+                {
+                    favorites.Add(url);
+                    FavoritesListBox.Items.Add(url); 
+                }
+            }
+        }
+
+        
+        private void FavoritesListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (FavoritesListBox.SelectedItem is string url)
+            {
+                CreateNewTab(url); 
+            }
         }
     }
 }
