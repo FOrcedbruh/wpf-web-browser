@@ -1,22 +1,6 @@
-2024/11/16-20:17:41.646 483c Reusing MANIFEST C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2024/11/16-20:17:41.652 483c Recovering log #102
-2024/11/16-20:17:41.657 483c Level-0 table #105: started
-2024/11/16-20:17:41.670 483c Level-0 table #105: 634915 bytes OK
-2024/11/16-20:17:41.671 483c Recovering log #104
-2024/11/16-20:17:41.673 483c Reusing old log C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000104.log 
-2024/11/16-20:17:41.675 483c Delete type=0 #102
-2024/11/16-20:18:39.731 43dc Level-0 table #107: started
-2024/11/16-20:18:39.741 43dc Level-0 table #107: 72074 bytes OK
-2024/11/16-20:18:39.742 43dc Delete type=0 #104
-2024/11/16-20:18:39.742 483c Compacting 4@0 + 1@1 files
-2024/11/16-20:18:39.757 483c Generated table #108@0: 579 keys, 1395151 bytes
-2024/11/16-20:18:39.757 483c Compacted 4@0 + 1@1 files => 1395151 bytes
-2024/11/16-20:18:39.758 483c compacted to: files[ 0 1 1 0 0 0 0 ]
-2024/11/16-20:18:39.758 483c Delete type=2 #98
-2024/11/16-20:18:39.758 483c Delete type=2 #100
-2024/11/16-20:18:39.758 483c Delete type=2 #103
-2024/11/16-20:18:39.758 483c Delete type=2 #105
-2024/11/16-20:18:39.758 483c Delete type=2 #107
-2024/11/16-20:18:41.901 43dc Level-0 table #110: started
-2024/11/16-20:18:41.914 43dc Level-0 table #110: 233436 bytes OK
-2024/11/16-20:18:41.915 43dc Delete type=0 #106
+2024/12/09-16:55:25.389 1e54 Reusing MANIFEST C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
+2024/12/09-16:55:25.396 1e54 Recovering log #130
+2024/12/09-16:55:25.398 1e54 Reusing old log C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\WebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000130.log 
+2024/12/09-16:55:57.221 11f0 Level-0 table #135: started
+2024/12/09-16:55:57.230 11f0 Level-0 table #135: 38737 bytes OK
+2024/12/09-16:55:57.231 11f0 Delete type=0 #130

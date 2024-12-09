@@ -24,3 +24,5 @@ C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\Microsoft.Web.Web
 C:\Users\Илья\source\repos\WebBrowser\WebBrowser\bin\Debug\Microsoft.Web.WebView2.Wpf.xml
 C:\Users\Илья\source\repos\WebBrowser\WebBrowser\obj\Debug\WebBrowser_Content.g.cs
 C:\Users\Илья\source\repos\WebBrowser\WebBrowser\obj\Debug\WebBrowser.csproj.CopyComplete
+C:\Users\Илья\source\repos\WebBrowser\WebBrowser\obj\Debug\SpravkaWindow.g.cs
+C:\Users\Илья\source\repos\WebBrowser\WebBrowser\obj\Debug\SpravkaWindow.baml

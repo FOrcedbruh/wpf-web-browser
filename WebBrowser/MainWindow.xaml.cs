@@ -22,11 +22,13 @@ namespace WebBrowser
     {
         // Список для хранения избранных URL
         private List<string> favorites = new List<string>();
+        private string searchQuery = "https://yandex.com/search/?text=";
+        private string searchEngine = "https://yandex.com";
 
         public MainWindow()
         {
             InitializeComponent();
-            CreateNewTab("https://www.google.com"); 
+            CreateNewTab(searchEngine); 
             FavoritesPanel.Visibility = Visibility.Collapsed;
             FavoritesColumn.Width = new GridLength(0);
             ToggleFavoritesOverlayButton.Content = "Показать избранное";
@@ -42,7 +44,7 @@ namespace WebBrowser
             TextBlock headerText = new TextBlock { Text = url, Margin = new Thickness(0, 0, 5, 0), Width = 200, TextTrimming = TextTrimming.CharacterEllipsis };
             headerPanel.Children.Add(headerText);
 
-            Button closeButton = new Button { Content = "X", Width = 20, Height = 20, Padding = new Thickness(0) };
+            Button closeButton = new Button { Content = "x", Width = 20, Height = 20, Padding = new Thickness(0), Foreground=Brushes.Orange };
             closeButton.Click += (s, e) => CloseTab(tabItem);
             headerPanel.Children.Add(closeButton);
 
@@ -128,7 +130,7 @@ namespace WebBrowser
         }
         private void NewTabButton_Click(object sender, RoutedEventArgs e)
         {
-            CreateNewTab("https://www.google.com");
+            CreateNewTab(searchEngine);
         }
 
         private void UrlTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -150,9 +152,9 @@ namespace WebBrowser
             }
             else
             {
-                string searchQuery = "https://www.google.com/search?q=" + Uri.EscapeDataString(input);
+                string searchQueryFull = searchQuery + Uri.EscapeDataString(input);
                 WebView2 browser = GetCurrentBrowser();
-                if (browser != null) browser.Source = new Uri(searchQuery);
+                if (browser != null) browser.Source = new Uri(searchQueryFull);
             }
         }
 
@@ -198,8 +200,29 @@ namespace WebBrowser
         {
             if (FavoritesListBox.SelectedItem is string url)
             {
-                CreateNewTab(url); 
+                CreateNewTab(url);
             }
+        }
+
+        private void EngineBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (searchQuery == "https://www.google.com/search?q=")
+            {
+                searchQuery = "https://yandex.com/search/?text=";
+                searchEngine = "https://yandex.com";
+                MessageBox.Show("Поисковая машина Yandex");
+            } else
+            {
+                searchQuery = "https://www.google.com/search?q=";
+                searchEngine = "https://www.google.com";
+                MessageBox.Show("Поисковая машина Google");
+            }
+        }
+
+        private void spravka_Click(object sender, RoutedEventArgs e)
+        {
+            SpravkaWindow spravkaWindow = new SpravkaWindow();
+            spravkaWindow.Show();
         }
     }
 }
